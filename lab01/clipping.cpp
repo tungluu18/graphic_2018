@@ -49,35 +49,8 @@ void display() {
   glFlush();
 }
 
-void drawCircleMidPoint(Point center, int radius) {
-  points.clear();
-  int x = radius, y = 0;  
-  int P = 1 - radius;
-  while (x >= y) {
-    points.push_back(Point(center.x + x, center.y + y));
-    points.push_back(Point(center.x - x, center.y + y));
-    points.push_back(Point(center.x - x, center.y - y));
-    points.push_back(Point(center.x + x, center.y - y));    
-    
-    points.push_back(Point(center.x + y, center.y + x));
-    points.push_back(Point(center.x - y, center.y + x));
-    points.push_back(Point(center.x - y, center.y - x));
-    points.push_back(Point(center.x + y, center.y - x));
-
-    ++y;
-    if (P <= 0) 
-      P = P + 2*y + 1;
-    else {
-      x--;
-      P = P + 2*y - 2*x + 1;
-    }        
-  }
-  //glutPostRedisplay();
-}
-
 int main(int argc, char **argv) {
   Init(argc, argv);    
-  drawCircleMidPoint(Point(100, 100), 0);
   glutDisplayFunc(display);
   glutMainLoop();
 
